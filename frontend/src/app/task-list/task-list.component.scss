@@ -1,0 +1,150 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Container Styling */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4a90e2;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+li {
+  background: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Task Details */
+li div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+li strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+li span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Buttons */
+button {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:first-child {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+button:first-child:hover {
+  background-color: #45a049;
+}
+
+button:nth-child(2) {
+  background-color: #f44336;
+  color: #fff;
+}
+
+button:nth-child(2):hover {
+  background-color: #e53935;
+}
+
+/* Status */
+li span strong {
+  color: #4caf50;
+}
+
+li span strong.incomplete {
+  color: #f44336;
+}
+
+/* Add Task Form */
+div:last-child {
+  margin: 20px auto;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 1 1 calc(33% - 20px);
+  min-width: 200px;
+}
+
+button:last-child {
+  background-color: #4a90e2;
+  color: #fff;
+  flex: 1 1 100%;
+}
+
+button:last-child:hover {
+  background-color: #4285f4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  li div:first-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  li span {
+    margin-top: 5px;
+  }
+
+  div:last-child {
+    flex-direction: column;
+  }
+
+  input {
+    flex: 1 1 100%;
+  }
+}

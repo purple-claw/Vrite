@@ -2,10 +2,24 @@
 
 <ul>
   <li *ngFor="let task of tasks">
-    {{ task.title }} 
-    <button (click)="deleteTask(task.id)">Delete</button>
+    <div>
+      <strong>{{ task.title }}</strong> 
+      <span>({{ task.priority }})</span>
+      <span>Due: {{ task.dueDate | date }}</span>
+    </div>
+    <div>
+      <button (click)="toggleTaskStatus(task.id)">
+        {{ task.completed ? 'Mark as Incomplete' : 'Mark as Complete' }}
+      </button>
+      <button (click)="deleteTask(task.id)">Delete</button>
+      <span>Status: <strong>{{ task.completed ? 'Complete' : 'Incomplete' }}</strong></span>
+    </div>
   </li>
 </ul>
 
-<input [(ngModel)]="newTaskTitle" placeholder="New task">
-<button (click)="addTask()">Add Task</button>
+<div>
+  <input [(ngModel)]="newTaskTitle" placeholder="New task title">
+  <input [(ngModel)]="newTaskPriority" placeholder="Priority (e.g., High, Medium, Low)">
+  <input [(ngModel)]="newTaskDueDate" type="date" placeholder="Due date">
+  <button (click)="addTask()">Add Task</button>
+</div>
