@@ -9,5 +9,6 @@ public interface ITaskService
     TaskModel AddTask(TaskModel task);
     bool DeleteTask(int id);
     TaskModel? TaskByID(int id);
+    bool UpdateTaskStatus(int id, string status);
 
 }

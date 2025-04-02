@@ -26,4 +26,10 @@ export class ApiService {
   updateTask(id: number, updatedTask: Task): Observable<Task> {
     return this.http.put<Task>(`${this.apiUrl}/${id}`, updatedTask);
   }
+
+  updateTaskStatus(id: number, status: string): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${id}/status`, `"${status}"`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }

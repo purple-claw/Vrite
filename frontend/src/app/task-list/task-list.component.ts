@@ -71,19 +71,19 @@ export class TaskListComponent implements OnInit {
   }
 
   toggleTaskStatus(id: number) {
-    const task = this.tasks.find(t => t.id === id);
+    const task = this.tasks.find((t) => t.id === id);
     if (!task) {
       console.error('Task not found');
       return;
     }
   
-    const updatedTask = { ...task, completed: !task.completed };
+    const newStatus = task.completed ? 'Incomplete' : 'Complete';
   
-    this.api.updateTask(id, updatedTask).subscribe({
+    this.api.updateTaskStatus(id, newStatus).subscribe({
       next: () => {
-        task.completed = updatedTask.completed;
+        task.completed = !task.completed;
       },
-      error: (err) => console.error('Failed to toggle task status', err)
+      error: (err) => console.error('Failed to update task status', err),
     });
   }
 }

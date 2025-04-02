@@ -36,4 +36,15 @@ public class TaskController : ControllerBase
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id) => _taskService.DeleteTask(id) ? NoContent() : NotFound();
+
+
+    [HttpPatch("{id}/status")]
+    public IActionResult UpdateStatus(int id, [FromBody] string status)
+    {
+        if (string.IsNullOrWhiteSpace(status))
+            return BadRequest("Status cannot be empty");
+
+        var updated = _taskService.UpdateTaskStatus(id, status);
+        return updated ? NoContent() : NotFound();
+    }
 }

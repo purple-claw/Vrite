@@ -3,16 +3,19 @@
 <ul>
   <li *ngFor="let task of tasks">
     <div>
-      <strong>{{ task.title }}</strong> 
+      <strong>{{ task.title }}</strong>
       <span>({{ task.priority }})</span>
       <span>Due: {{ task.dueDate | date }}</span>
     </div>
     <div>
+      <!-- Button to toggle task status -->
       <button (click)="toggleTaskStatus(task.id)">
         {{ task.completed ? 'Mark as Incomplete' : 'Mark as Complete' }}
       </button>
-      <button (click)="deleteTask(task.id)">Delete</button>
+      <!-- Display the current status -->
       <span>Status: <strong>{{ task.completed ? 'Complete' : 'Incomplete' }}</strong></span>
+      <!-- Button to delete task -->
+      <button (click)="deleteTask(task.id)">Delete</button>
     </div>
   </li>
 </ul>

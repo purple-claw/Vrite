@@ -34,4 +34,13 @@ public class TaskService : ITaskService
 
     public TaskModel? TaskByID(int id)
         => _db.Tasks.Find(id);
+
+    public bool UpdateTaskStatus(int id, string status)
+    {
+        var task = _db.Tasks.Find(id);
+        if (task == null) return false;
+        task.Status = status;
+        _db.SaveChanges();
+        return true;
+    }
 }

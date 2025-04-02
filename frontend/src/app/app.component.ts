@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TaskListComponent } from './task-list/task-list.component';
 
 @Component({
@@ -7,7 +8,7 @@ import { TaskListComponent } from './task-list/task-list.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    TaskListComponent  
+    TaskListComponent,
   ],
   template: `
     <main>
