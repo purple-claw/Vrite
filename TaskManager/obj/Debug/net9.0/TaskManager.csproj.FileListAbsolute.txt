@@ -9,6 +9,7 @@
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Azure.Core.dll
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Azure.Identity.dll
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Humanizer.dll
+/home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Microsoft.Build.Locator.dll
 /home/dev/Desktop/opt/Vrite/TaskManager/bin/Debug/net9.0/Microsoft.CodeAnalysis.dll
