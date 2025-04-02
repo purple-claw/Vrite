@@ -16,5 +16,9 @@ public class User
 
     [Required]
     public string Role { get; set; } = "User";
+
+    public string? FullName { get; set; }
+
+    public string? PhoneNumber {get;set;}
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

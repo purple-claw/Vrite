@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models;
 using TaskManager.Services;
-using TaskManager.Data; // Ensure this is the namespace where AppDbContext is defined
-using Microsoft.EntityFrameworkCore; // Required for AnyAsync and other EF Core methods
+using TaskManager.Data; 
+using Microsoft.EntityFrameworkCore; 
+using Microsoft.AspNetCore.Authorization; 
+using System.Security.Claims; 
 
 namespace TaskManager.Controllers;
 
@@ -55,4 +57,28 @@ public class AuthController : ControllerBase
         var token = _authService.GenerateToken(user); 
         return Ok(token);
     }
+
+    [HttpPut("profile")]
+    [Authorize]
+    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequest request)
+    {
+        // Get current user's email from JWT claim
+        var userEmail = User.FindFirstValue(ClaimTypes.Email);
+        
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Email == userEmail);
+
+        if (user == null) return NotFound("User not found");
+
+        // Update allowed fields
+        if (!string.IsNullOrEmpty(request.FullName))
+            user.FullName = request.FullName;
+
+        if (!string.IsNullOrEmpty(request.PhoneNumber))
+            user.PhoneNumber = request.PhoneNumber;
+
+        await _context.SaveChangesAsync();
+        return Ok(user);
+    }
+
 }
