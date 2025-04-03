@@ -1,12 +1,191 @@
-<div class="landing-container">
-  <header class="landing-header">
-    <nav class="landing-nav">
-        <a (click)="login()">Login</a>
-        <a (click)="register()">Register</a>
-        <a (click)="tasks()">Task List</a>
-        <a (click)="profile()">Profile</a>
-      </nav>
-    <h1>Welcome to Vrite</h1>
-    <p>Your ultimate task management solution.</p>
-  </header>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>Vrite</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="/login" class="btn btn-text">Login</a>
+                <a href="/register" class="btn btn-primary">Get started</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Vrite is the new standard for task management</h1>
+                <p>Organize, track, and prioritize your personal tasks in a clear, efficient workflow that keeps everyone aligned and productive.</p>
+                <div class="hero-buttons">
+                    <a href="/register" class="btn btn-primary">Start for free</a>
+                    <a href="#" class="btn btn-secondary">Request demo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/taskdash.jpg" alt="Vrite Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Build tasks faster, together.</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Enhanced UI</h3>
+                    <p>Organize all your Tasks in single Place with Rich Enhanced visual UI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Priority Management</h3>
+                    <p>Easily prioritize tasks with intuitive drag-and-drop functionality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Time Tracking</h3>
+                    <p>Track time spent on tasks for accurate project management and billing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Team Collaboration</h3>
+                    <p>Work together seamlessly with real-time updates and comments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="productivity">
+        <div class="container">
+            <h2>Crafted for the most productive version of yourself.</h2>
+            <div class="productivity-showcase">
+                <div class="boards-view">
+                    <img src="#" alt="Vrite boards view">
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="communication">
+        <div class="container">
+            <h2>Be productive, stand out above everyone.</h2>
+            <div class="communication-grid">
+                <div class="comm-card">
+                    <h3>Plan Tasks</h3>
+                    <p>Plan your tasks and projects in organized way.</p>
+                    <img src="assets/plantas.jpg" alt="Team chat feature">
+                </div>
+                <div class="comm-card">
+                    <h3>Track Status</h3>
+                    <p>Efficiently track status of plan of yours.</p>
+                    <img src="assets/tracktask.png" alt="Task comments feature">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="workflow" id="reviews">
+        <div class="container">
+            <h2>Lets Hear from our Users.</h2>
+            <div class="workflow-features">
+                <div class="workflow-feature">
+                    <h3>Rohit.D</h3>
+                    <p>"Very easy to use and rich UI Features enable easy interactions and I would love to recommend it."</p>
+                </div>
+                <div class="workflow-feature">
+                    <h3>Sonali Vyas</h3>
+                    <p>"Start projects quickly with customizable task templates, very effective and boosted my productivity by 40%".</p>
+                </div>
+                <div class="workflow-feature">
+                    <h3>Ahmad.M</h3>
+                    <p>"Worried for recurring tasks and  iregular activities and  miss deadlines, now say goodbye with Vrite".</p>
+                </div>
+                <div class="workflow-feature">
+                    <h3>Amar Douh</h3>
+                    <p>"The Tracking task feature matters most to you when it needed the most, Luckily it was provided here".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="pricing">
+        <div class="container">
+            <h2>Excited to Use Vrite?</h2>
+            <p>Start organizing your tasks and boost your productivity today.</p>
+            <a (click)="register()" class="btn btn-primary">Get started</a>
+        </div>
+    </section>
+
+    <section class="integrations">
+      <div class="container">
+          <h2>Collaborate with Us.</h2>
+          <div class="integrations-grid">
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="Slack">
+                  <h4>GitHub</h4>
+              </div>
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=P7UIlhbpWzZm&format=png&color=000000" alt="Google Drive">
+                  <h4>Gmail</h4>
+              </div>
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="GitHub">
+                  <h4>ProtonMail</h4>
+              </div>
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=zfHRZ6i1Wg0U&format=png&color=000000" alt="Figma">
+                  <h4>Figma</h4>
+              </div>
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=30998&format=png&color=000000" alt="Zoom">
+                  <h4>Discord</h4>
+              </div>
+              <div class="integration-card">
+                  <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="Notion">
+                  <h4>LinkedIn</h4>
+              </div>
+          </div>
+      </div>
+  </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <span>Vrite</span>
+                    </div>
+                    <p>The new standard for task management</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#security">Report Bugs</a></li>
+                        <li><a href="#enterprise">Colloborate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Vrite Inc. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="mailto@Purpleclaw.16@proton.me">Mail</a>
+                    <a href="https://www.linkedin.com/in/juttuka-sri-nithin-772461246/">LinkedIn</a>
+                    <a href="https://github.com/purple-claw">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

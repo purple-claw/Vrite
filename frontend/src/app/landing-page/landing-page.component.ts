@@ -1,29 +1,30 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent {
-    constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-    profile() {
-        this.router.navigate(['/profile']);
-    }
+  register(): void {
+    this.router.navigate(['/register']);
+  }
 
-    tasks() {
-        this.router.navigate(['/tasks']);
-    }
+  login(): void {
+    this.router.navigate(['/login']);
+  }
 
-    login()
-    {
-        this.router.navigate(['/login']);
-    }
+  tasks(): void {
+    this.router.navigate(['/tasks']);
+  }
 
-    register() {
-        this.router.navigate(['/register']);
-    }
+  profile(): void {
+    this.router.navigate(['/profile']);
+  }
 }
