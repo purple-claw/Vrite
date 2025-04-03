@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class LandingPageComponent {
   constructor(private router: Router) {}
 
+  
   register(): void {
     this.router.navigate(['/register']);
   }

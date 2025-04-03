@@ -192,9 +192,7 @@ nav a:hover {
 }
 
 .hero-image img {
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--card-border);
+  border : none;
 }
 
 /* Features Section */
@@ -293,6 +291,12 @@ nav a:hover {
   gap: 1.5rem;
 }
 
+.comm-card img {
+  border: none;
+  width : 70%;
+  height: auto;
+}
+
 .comm-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 
@@ -379,6 +383,9 @@ nav a:hover {
 
 .integration-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 
+              0 0 15px var(--accent-primary), /* Blueish glow */
+              0 0 25px var(--accent-secondary); /* Pink glow */
 }
 
 .integration-card img {
@@ -542,6 +549,17 @@ footer {
 
 .social-links a:hover {
   color: var(--text-primary);
+}
+
+.feature-card, .comm-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover, .comm-card:hover {
+  transform: translateY(-5px) scale(1.05); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+              0 0 15px var(--accent-primary), 
+              0 0 25px var(--accent-secondary); 
 }
 
 /* Media Queries */
