@@ -27,6 +27,7 @@ builder.Services.AddCors(options => {
 });
 
 //  4. Services 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<ITaskService, TaskService>();

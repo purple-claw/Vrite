@@ -5,10 +5,9 @@ namespace TaskManager.Services;
 
 public interface ITaskService
 {
-    IReadOnlyList<TaskModel> GetTasksAll(); // This Method Returns all the Availble Tasks in the database, and to make it secure I made it immutable by Readonly access Specifier.
+    IReadOnlyList<TaskModel> GetUserTasks(string userId);
     TaskModel AddTask(TaskModel task);
-    bool DeleteTask(int id);
-    TaskModel? TaskByID(int id);
-    bool UpdateTaskStatus(int id, string status);
-
+    bool DeleteUserTask(int id, string userId);
+    TaskModel? GetUserTask(int id, string userId);
+    bool UpdateUserTaskStatus(int id, string userId, string status);
 }
