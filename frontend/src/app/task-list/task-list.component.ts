@@ -51,6 +51,18 @@ export class TaskListComponent implements OnInit {
     this.loadTasks();
   }
 
+  home() {
+    this.router.navigate(['/'])
+  }
+
+  profile() {
+    this.router.navigate(['/profile'])
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
+
   loadTasks() {
     this.isLoading = true;
     this.api.getTasks().subscribe({
