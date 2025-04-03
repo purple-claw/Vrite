@@ -1,52 +1,112 @@
-<div class="auth-container">
-    <div class="auth-card">
-      <h2>Create Account</h2>
-      <form (submit)="onRegister($event)">
-        <div class="form-group">
-          <input 
-            type="text" 
-            [(ngModel)]="fullName" 
-            name="fullName"
-            placeholder="Full Name" 
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input 
-            type="email" 
-            [(ngModel)]="email" 
-            name="email"
-            placeholder="Email" 
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input 
-            type="password" 
-            [(ngModel)]="password" 
-            name="password"
-            placeholder="Password" 
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input 
-            type="password" 
-            [(ngModel)]="confirmPassword" 
-            name="confirmPassword"
-            placeholder="Confirm Password" 
-            required
-          />
-        </div>
-        <button type="submit" [disabled]="isLoading" class="auth-button">
-          {{ isLoading ? 'Creating account...' : 'Register' }}
-        </button>
-        <div *ngIf="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
-        <div class="auth-footer">
-          Already have an account? <a routerLink="/login">Sign in</a>
-        </div>
-      </form>
+<html>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>Vrite</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a routerLink="/login" class="btn btn-text">Login</a>
+        <a routerLink="/register" class="btn btn-primary">Get started</a>
+      </div>
     </div>
-  </div>
+  </header>
+  
+  <main>
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-card">
+            <h2>Create Account</h2>
+            <form (submit)="onRegister($event)">
+              <div class="form-group">
+                <input 
+                  type="text" 
+                  [(ngModel)]="fullName" 
+                  name="fullName"
+                  placeholder="Full Name" 
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input 
+                  type="email" 
+                  [(ngModel)]="email" 
+                  name="email"
+                  placeholder="Email" 
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input 
+                  type="password" 
+                  [(ngModel)]="password" 
+                  name="password"
+                  placeholder="Password" 
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input 
+                  type="password" 
+                  [(ngModel)]="confirmPassword" 
+                  name="confirmPassword"
+                  placeholder="Confirm Password" 
+                  required
+                />
+              </div>
+              <button type="submit" [disabled]="isLoading" class="auth-button">
+                {{ isLoading ? 'Creating account...' : 'Register' }}
+              </button>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+              <div class="auth-footer">
+                Already have an account? <a href="/login">Sign in</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <div class="logo">
+            <div class="logo-icon"></div>
+            <span>Vrite</span>
+          </div>
+          <p>The new standard for task management</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#security">Report Bugs</a></li>
+            <li><a href="#enterprise">Collaborate</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Vrite Inc. All rights reserved.</p>
+        <div class="social-links">
+          <a href="mailto:Purpleclaw.16@proton.me">Mail</a>
+          <a href="https://www.linkedin.com/in/juttuka-sri-nithin-772461246/">LinkedIn</a>
+          <a href="https://github.com/purple-claw">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

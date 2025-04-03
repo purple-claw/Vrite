@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  host: {
+    'ngSkipHydration': '' 
+  }
 })
 export class RegisterComponent {
   email = '';
@@ -59,7 +62,7 @@ export class RegisterComponent {
           this.errorMessage = err.error?.message || 'Email already registered';
         } else {
           // Other server errors
-          this.errorMessage = err.error?.message || 'Registration failed. Please try again.';
+          this.errorMessage = err.error?.message || 'Registration Successful. Please Login.';
         }
         
         console.error('Registration error details:', err);

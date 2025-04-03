@@ -1,123 +1,149 @@
-<div class="task-manager">
-  <div class="header">
-    <h2>My Tasks</h2>
-    <div class="controls">
-      <div class="search-box">
-        <input 
-          type="text" 
-          [(ngModel)]="searchQuery" 
-          placeholder="Search tasks..."
-          (input)="filterTasks()"
-        >
-        <span class="search-icon">🔍</span>
+<html>
+<body>
+    <header>
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>Vrite</span>
       </div>
-      <button class="add-task-btn" (click)="showAddTaskForm = !showAddTaskForm">
-        {{ showAddTaskForm ? 'Cancel' : '+ Add Task' }}
-      </button>
-    </div>
-  </div>
-
-  <div *ngIf="showAddTaskForm" class="add-task-form">
-    <h3>Add New Task</h3>
-    <div class="form-group">
-      <input 
-        type="text" 
-        [(ngModel)]="newTaskTitle" 
-        placeholder="Task title" 
-        required
-      >
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Priority</label>
-        <select [(ngModel)]="newTaskPriority">
-          <option value="Low">Low</option>
-          <option value="Medium" selected>Medium</option>
-          <option value="High">High</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Due Date</label>
-        <input 
-          type="date" 
-          [(ngModel)]="newTaskDueDate" 
-          required
-        >
+      <!-- <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav> -->
+      <div class="auth-buttons">
+        <!-- <a routerLink="/logout" class="btn btn-text">Logout</a> -->
+        <a href="/logout" class="btn btn-primary">Logout</a>
       </div>
     </div>
-    <div class="form-actions">
-      <button class="cancel-btn" (click)="resetAddTaskForm()">Cancel</button>
-      <button class="submit-btn" (click)="addTask()" [disabled]="!newTaskTitle || !newTaskDueDate">
-        Add Task
-      </button>
-    </div>
-  </div>
-
-  <div class="task-filters">
-    <div class="filter-buttons">
-      <button 
-        *ngFor="let filter of filters"
-        [class.active]="activeFilter === filter.value"
-        (click)="setFilter(filter.value)"
-      >
-        {{ filter.label }}
-      </button>
-    </div>
-    <div class="sort-options">
-      <label>Sort by:</label>
-      <select [(ngModel)]="sortField" (change)="sortTasks()">
-        <option value="dueDate">Due Date</option>
-        <option value="priority">Priority</option>
-        <option value="title">Title</option>
-      </select>
-      <button (click)="toggleSortOrder()">
-        {{ sortOrder === 'asc' ? '↑' : '↓' }}
-      </button>
-    </div>
-  </div>
-
-  <div *ngIf="isLoading" class="loading-spinner">
-    Loading tasks...
-  </div>
-
-  <div *ngIf="!isLoading && filteredTasks.length === 0" class="empty-state">
-    <p>No tasks found. Create your first task!</p>
-  </div>
-
-  <ul *ngIf="!isLoading && filteredTasks.length > 0" class="task-list">
-    <li *ngFor="let task of filteredTasks" [class.completed]="task.completed">
-      <div class="task-info">
-        <div class="task-main">
+  </header>
+  
+    <section class="task-manager">
+    <div class="container">
+      <div class="header">
+        <h2>My Tasks</h2>
+        <div class="controls">
+          <div class="search-box">
+            <input 
+              type="text" 
+              [(ngModel)]="searchQuery" 
+              placeholder="Search tasks..."
+              (input)="filterTasks()"
+            >
+            <span class="search-icon">🔍</span>
+          </div>
+          <button class="add-task-btn" (click)="showAddTaskForm = !showAddTaskForm">
+            {{ showAddTaskForm ? 'Cancel' : '+ Add Task' }}
+          </button>
+        </div>
+      </div>
+  
+      <div *ngIf="showAddTaskForm" class="add-task-form">
+        <h3>Add New Task</h3>
+        <div class="form-group">
           <input 
-            type="checkbox" 
-            [checked]="task.completed" 
-            (change)="toggleTaskStatus(task.id)"
-            class="task-checkbox"
+            type="text" 
+            [(ngModel)]="newTaskTitle" 
+            placeholder="Task title" 
+            required
           >
-          <span class="task-title">{{ task.title }}</span>
-          <span class="task-priority" [class]="'priority-' + task.priority.toLowerCase()">
-            {{ task.priority }}
-          </span>
         </div>
-        <div class="task-meta">
-          <span class="task-due">
-            <span class="meta-label">Due:</span> 
-            {{ task.dueDate | date:'mediumDate' }}
-          </span>
-          <span class="task-status">
-            <span class="meta-label">Status:</span> 
-            {{ task.completed ? 'Completed' : 'Pending' }}
-          </span>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Priority</label>
+            <select [(ngModel)]="newTaskPriority">
+              <option value="Low">Low</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Due Date</label>
+            <input 
+              type="date" 
+              [(ngModel)]="newTaskDueDate" 
+              required
+            >
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" (click)="resetAddTaskForm()">Cancel</button>
+          <button class="submit-btn" (click)="addTask()" [disabled]="!newTaskTitle || !newTaskDueDate">
+            Add Task
+          </button>
         </div>
       </div>
-      <div class="task-actions">
-        <button class="edit-btn" (click)="editTask(task)">✏️</button>
-        <button class="delete-btn" (click)="deleteTask(task.id)">🗑️</button>
+  
+      <div class="task-filters">
+        <div class="filter-buttons">
+          <button 
+            *ngFor="let filter of filters"
+            [class.active]="activeFilter === filter.value"
+            (click)="setFilter(filter.value)"
+          >
+            {{ filter.label }}
+          </button>
+        </div>
+        <div class="sort-options">
+          <label>Sort by:</label>
+          <select [(ngModel)]="sortField" (change)="sortTasks()">
+            <option value="dueDate">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="title">Title</option>
+          </select>
+          <button (click)="toggleSortOrder()">
+            {{ sortOrder === 'asc' ? '↑' : '↓' }}
+          </button>
+        </div>
       </div>
-    </li>
-  </ul>
-
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
-</div>
+  
+      <div *ngIf="isLoading" class="loading-spinner">
+        Loading tasks...
+      </div>
+  
+      <div *ngIf="!isLoading && filteredTasks.length === 0" class="empty-state">
+        <p>No tasks found. Create your first task!</p>
+      </div>
+  
+      <ul *ngIf="!isLoading && filteredTasks.length > 0" class="task-list">
+        <li *ngFor="let task of filteredTasks" [class.completed]="task.completed">
+          <div class="task-info">
+            <div class="task-main">
+              <input 
+                type="checkbox" 
+                [checked]="task.completed" 
+                (change)="toggleTaskStatus(task.id)"
+                class="task-checkbox"
+              >
+              <span class="task-title">{{ task.title }}</span>
+              <span class="task-priority" [class]="'priority-' + task.priority.toLowerCase()">
+                {{ task.priority }}
+              </span>
+            </div>
+            <div class="task-meta">
+              <span class="task-due">
+                <span class="meta-label">Due:</span> 
+                {{ task.dueDate | date:'mediumDate' }}
+              </span>
+              <span class="task-status">
+                <span class="meta-label">Status:</span> 
+                {{ task.completed ? 'Completed' : 'Pending' }}
+              </span>
+            </div>
+          </div>
+          <div class="task-actions">
+            <button class="edit-btn" (click)="editTask(task)">✏️</button>
+            <button class="delete-btn" (click)="deleteTask(task.id)">🗑️</button>
+          </div>
+        </li>
+      </ul>
+  
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </section>
+</body>
+</html>

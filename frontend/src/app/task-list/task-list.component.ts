@@ -19,7 +19,10 @@ export interface Task {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
+  host: {
+    'ngSkipHydration': '' 
+  }
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
