@@ -33,7 +33,7 @@ public class TaskController : ControllerBase
     public IActionResult GetTasksAll()
     {
         var userId = GetCurrentUserId();
-        return Ok(_taskService.GetUserTasks(userId)); // Adjusted to match the correct method signature
+        return Ok(_taskService.GetUserTasks(userId)); 
     }
 
     [HttpGet("{id}")]
@@ -68,13 +68,21 @@ public class TaskController : ControllerBase
     }
 
     [HttpPatch("{id}/status")]
-    public IActionResult UpdateStatus(int id, [FromBody] string status)
+    public IActionResult UpdateTaskStatus(int id, [FromBody] string status)
     {
-        if (string.IsNullOrWhiteSpace(status))
-            return BadRequest("Status cannot be empty");
-
-        var userId = GetCurrentUserId();
-        var updated = _taskService.UpdateUserTaskStatus(id, userId, status);
-        return updated ? NoContent() : NotFound();
+        try
+        {
+            var userId = GetCurrentUserId(); // Ensure the user is authenticated
+            var updated = _taskService.UpdateUserTaskStatus(id, userId, status); 
+            return updated ? NoContent() : NotFound();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "An error occurred while updating the task status.", details = ex.Message });
+        }
     }
 }

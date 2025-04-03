@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 export interface Task {
   id: number;
@@ -9,6 +11,7 @@ export interface Task {
   dueDate: string;
   priority: string;
   completed: boolean;
+  userId: string;
 }
 
 @Component({
@@ -38,7 +41,11 @@ export class TaskListComponent implements OnInit {
     { value: 'pending', label: 'Pending' }
   ];
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadTasks();
@@ -53,9 +60,14 @@ export class TaskListComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        this.errorMessage = 'Failed to load tasks';
         this.isLoading = false;
-        console.error(err);
+        if (err.status === 401) {
+          this.errorMessage = 'Session expired. Please login again.';
+          this.api.clearToken(); // Clear token directly in ApiService
+          this.router.navigate(['/login']);
+        } else {
+          this.errorMessage = 'Failed to load tasks';
+        }
       }
     });
   }
@@ -67,11 +79,12 @@ export class TaskListComponent implements OnInit {
     }
 
     const newTask: Task = {
-      id: 0,
+      id: 0, // Will be assigned by backend
       title: this.newTaskTitle,
       dueDate: this.newTaskDueDate,
       priority: this.newTaskPriority,
-      completed: false
+      completed: false,
+      userId: '' // User ID is handled on the backend
     };
 
     this.api.addTask(newTask).subscribe({
@@ -91,18 +104,15 @@ export class TaskListComponent implements OnInit {
     this.newTaskTitle = task.title;
     this.newTaskPriority = task.priority;
     this.newTaskDueDate = task.dueDate;
-  
     this.showAddTaskForm = true;
-  
-    // Save the changes
+
     const updatedTask: Task = {
-      id: task.id,
+      ...task,
       title: this.newTaskTitle,
       dueDate: this.newTaskDueDate,
-      priority: this.newTaskPriority,
-      completed: task.completed
+      priority: this.newTaskPriority
     };
-  
+
     this.api.updateTask(task.id, updatedTask).subscribe({
       next: (updated) => {
         const index = this.tasks.findIndex(t => t.id === task.id);
@@ -129,6 +139,7 @@ export class TaskListComponent implements OnInit {
         error: (err) => {
           this.errorMessage = 'Failed to delete task';
           console.error(err);
+          // Remove this line: this.api.clearToken();
         }
       });
     }
@@ -137,20 +148,21 @@ export class TaskListComponent implements OnInit {
   toggleTaskStatus(id: number) {
     const task = this.tasks.find(t => t.id === id);
     if (!task) return;
-
+  
     const newStatus = task.completed ? 'Incomplete' : 'Complete';
     
     this.api.updateTaskStatus(id, newStatus).subscribe({
       next: () => {
         task.completed = !task.completed;
-        this.filterTasks();
       },
       error: (err) => {
-        this.errorMessage = 'Failed to update task status';
-        console.error(err);
+        console.error('Status update failed:', err);
+        // Revert UI change if API fails
+        task.completed = !task.completed; 
       }
     });
   }
+
 
   filterTasks() {
     this.filteredTasks = this.tasks.filter(task => 
@@ -173,9 +185,11 @@ export class TaskListComponent implements OnInit {
       
       if (this.sortField === 'priority') {
         const priorityOrder = { 'High': 1, 'Medium': 2, 'Low': 3 };
-        comparison = priorityOrder[a.priority as keyof typeof priorityOrder] - priorityOrder[b.priority as keyof typeof priorityOrder];
+        comparison = priorityOrder[a.priority as keyof typeof priorityOrder] - 
+                   priorityOrder[b.priority as keyof typeof priorityOrder];
       } else {
-        comparison = a[this.sortField as keyof Task].toString().localeCompare(b[this.sortField as keyof Task].toString());
+        comparison = a[this.sortField as keyof Task].toString()
+                     .localeCompare(b[this.sortField as keyof Task].toString());
       }
       
       return this.sortOrder === 'asc' ? comparison : -comparison;

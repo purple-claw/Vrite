@@ -7,6 +7,15 @@ namespace TaskManager.Services;
 
 public class TaskService : ITaskService
 {
+    public TaskModel GetUserTask(int id, string userId)
+    {
+        var task = _db.Tasks.FirstOrDefault(t => t.Id == id && t.UserId == userId);
+        if (task == null)
+        {
+            throw new InvalidOperationException("Task not found.");
+        }
+        return task;
+    }
     private readonly AppDbContext _db;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -47,20 +56,22 @@ public class TaskService : ITaskService
         return true;
     }
 
-    public TaskModel? GetUserTask(int id, string userId) // Added userId parameter
+    public bool UpdateUserTaskStatus(int id, string userId, string status)
+{
+    var task = _db.Tasks.FirstOrDefault(t => t.Id == id && t.UserId == userId);
+    if (task == null)
     {
-        return _db.Tasks.FirstOrDefault(t => t.Id == id && t.UserId == userId);
+        return false; 
     }
 
-    public bool UpdateUserTaskStatus(int id, string userId, string status) // Added userId parameter
+    var validStatuses = new[] { "Incomplete", "Complete" };
+    if (!validStatuses.Contains(status))
     {
-        var task = _db.Tasks.FirstOrDefault(t => t.Id == id && t.UserId == userId);
-        
-        if (task == null) 
-            return false;
-
-        task.Status = status;
-        _db.SaveChanges();
-        return true;
+        throw new ArgumentException("Invalid status value.");
     }
+
+    task.Status = status;
+    _db.SaveChanges();
+    return true;
+}
 }
