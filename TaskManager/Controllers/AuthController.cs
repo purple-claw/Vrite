@@ -58,26 +58,19 @@ public class AuthController : ControllerBase
         return Ok(token);
     }
 
-    [HttpPut("profile")]
-    [Authorize]
-    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequest request)
+    [HttpGet("profile")]
+    public async Task<IActionResult> GetProfile()
     {
-        // Get current user's email from JWT claim
         var userEmail = User.FindFirstValue(ClaimTypes.Email);
-        
+
+        if (string.IsNullOrEmpty(userEmail))
+            return BadRequest("No email found in token");
+
         var user = await _context.Users
             .FirstOrDefaultAsync(u => u.Email == userEmail);
 
         if (user == null) return NotFound("User not found");
 
-        // Update allowed fields
-        if (!string.IsNullOrEmpty(request.FullName))
-            user.FullName = request.FullName;
-
-        if (!string.IsNullOrEmpty(request.PhoneNumber))
-            user.PhoneNumber = request.PhoneNumber;
-
-        await _context.SaveChangesAsync();
         return Ok(user);
     }
 

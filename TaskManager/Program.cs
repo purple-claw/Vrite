@@ -17,12 +17,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //  3. CORS 
-builder.Services.AddCors(options => 
-{
-    options.AddPolicy("AllowAngularDev",
-        policy => policy.WithOrigins("http://localhost:4200")
-                       .AllowAnyMethod()
-                       .AllowAnyHeader());
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAngularDev", policy => {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
 
 //  4. Services 

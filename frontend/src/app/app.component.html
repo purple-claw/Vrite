@@ -1,1 +1,25 @@
-<app-task-list></app-task-list>
+<header>
+    <nav class="navbar">
+      <div class="logo">
+        <a routerLink="/tasks">Vrite - Task Manager</a>
+      </div>
+      <ul class="nav-links">
+        <li><a routerLink="/tasks" routerLinkActive="active">Tasks</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer>
+    <p>© 2025 Vrite - Task Manager. All rights reserved.</p>
+  </footer>

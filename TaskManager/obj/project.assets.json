@@ -4747,11 +4747,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dev/Desktop/opt/Vrite/TaskManager/TaskManager.csproj",
+      "projectUniqueName": "/home/dev/Desktop/Vrite-v2/TaskManager/TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "/home/dev/Desktop/opt/Vrite/TaskManager/TaskManager.csproj",
+      "projectPath": "/home/dev/Desktop/Vrite-v2/TaskManager/TaskManager.csproj",
       "packagesPath": "/home/dev/.nuget/packages/",
-      "outputPath": "/home/dev/Desktop/opt/Vrite/TaskManager/obj/",
+      "outputPath": "/home/dev/Desktop/Vrite-v2/TaskManager/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/dev/.nuget/NuGet/NuGet.Config"

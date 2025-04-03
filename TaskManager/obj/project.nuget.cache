@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "btcIYhDEEcg=",
+  "dgSpecHash": "j4hpGJdPE0M=",
   "success": true,
-  "projectFilePath": "/home/dev/Desktop/opt/Vrite/TaskManager/TaskManager.csproj",
+  "projectFilePath": "/home/dev/Desktop/Vrite-v2/TaskManager/TaskManager.csproj",
   "expectedPackageFiles": [
     "/home/dev/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/dev/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
